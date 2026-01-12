@@ -259,37 +259,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Show/hide nav CTA button based on scroll and add background to nav
 const navCta = document.querySelector('.nav-cta');
 const nav = document.querySelector('nav');
 const heroCta = document.querySelector('.hero .cta-button');
 
+let lastScrollY = window.scrollY;
+let scrollTimer;
+
 window.addEventListener('scroll', () => {
-    const heroCtaRect = heroCta.getBoundingClientRect();
-    const navHeight = nav.offsetHeight;
+    const currentScrollY = window.scrollY;
 
-    // Show nav CTA when hero CTA scrolls past nav
-    if (heroCtaRect.bottom < navHeight) {
-        navCta.classList.add('visible');
-    } else {
-        navCta.classList.remove('visible');
-    }
-
-    // Add background to nav when scrolled
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-});
-
-// Parallax effect on hero
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero-content');
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - scrolled / 600;
+    // Parallax logic for hero
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        heroContent.style.transform = `translateY(${currentScrollY * 0.5}px)`;
+        heroContent.style.opacity = 1 - currentScrollY / 600;
     }
 
     // Parallax for stats background
@@ -297,16 +281,44 @@ window.addEventListener('scroll', () => {
     const statsBgImage = document.querySelector('.stats-bg-image');
     if (statsSection && statsBgImage) {
         const rect = statsSection.getBoundingClientRect();
-        const sectionTop = rect.top;
-        const sectionHeight = rect.height;
-
-        // Calculate parallax only when section is in viewport
-        if (sectionTop < window.innerHeight && sectionTop + sectionHeight > 0) {
-            const parallaxSpeed = 0.3;
-            const offset = (window.innerHeight - sectionTop) * parallaxSpeed;
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const offset = (window.innerHeight - rect.top) * 0.3;
             statsBgImage.style.transform = `translate(-50%, calc(-50% + ${offset}px))`;
         }
     }
+
+    // Nav CTA visibility
+    if (heroCta) {
+        const heroCtaRect = heroCta.getBoundingClientRect();
+        const navHeight = nav.offsetHeight;
+        if (heroCtaRect.bottom < navHeight) {
+            navCta.classList.add('visible');
+        } else {
+            navCta.classList.remove('visible');
+        }
+    }
+
+    // Nav background (scrolled state)
+    if (currentScrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+
+    // Smart Header: Hide on scroll down, show on scroll up
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        nav.classList.add('hidden');
+    } else {
+        nav.classList.remove('hidden');
+    }
+
+    // Show header after 1 second of inactivity
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+        nav.classList.remove('hidden');
+    }, 1000);
+
+    lastScrollY = currentScrollY;
 });
 
 // Initialize everything
@@ -364,46 +376,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-    }
-});
-
-// Navigation background and visibility
-window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    const navCta = document.querySelector('.nav-cta');
-    const heroCta = document.querySelector('.hero .cta-button');
-
-    if (heroCta) {
-        const heroCtaRect = heroCta.getBoundingClientRect();
-        if (heroCtaRect.bottom < nav.offsetHeight) {
-            navCta.classList.add('visible');
-        } else {
-            navCta.classList.remove('visible');
-        }
-    }
-
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-
-    // Parallax logic
-    const scrolled = window.pageYOffset;
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-        heroContent.style.opacity = 1 - scrolled / 600;
-    }
-
-    const statsSection = document.querySelector('.stats');
-    const statsBgImage = document.querySelector('.stats-bg-image');
-    if (statsSection && statsBgImage) {
-        const rect = statsSection.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            const offset = (window.innerHeight - rect.top) * 0.3;
-            statsBgImage.style.transform = `translate(-50%, calc(-50% + ${offset}px))`;
-        }
     }
 });
 

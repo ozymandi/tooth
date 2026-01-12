@@ -30,18 +30,24 @@ body {
 nav {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     padding: 1rem 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
+    z-index: 1000;
     backdrop-filter: blur(10px);
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 nav.scrolled {
     background: rgba(10, 5, 21, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+nav.hidden {
+    transform: translateY(-100%);
 }
 
 .logo {
@@ -158,6 +164,7 @@ nav.scrolled {
 
 .blend-diff {
     mix-blend-mode: difference;
+    color: #fff;
 }
 
 .hero-bg {
@@ -181,7 +188,6 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1;
 }
 
 .hero-image {
@@ -255,7 +261,6 @@ nav.scrolled {
 
 .hero-content {
     text-align: left;
-    z-index: 2;
     max-width: 800px;
 }
 
@@ -604,8 +609,41 @@ h1 {
     margin: 0;
     background: transparent;
     border: none;
-    opacity: 0.2;
     padding: 0;
+    height: 60px;
+    /* Fixed height to synchronize children */
+}
+
+.marquee-focal-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.marquee-focal-layer.sharp {
+    z-index: 2;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+}
+
+.marquee-focal-layer.blurred {
+    z-index: 1;
+    filter: blur(15px);
+    -webkit-mask-image: linear-gradient(to right, black 0%, transparent 25%, transparent 75%, black 100%);
+    mask-image: linear-gradient(to right, black 0%, transparent 25%, transparent 75%, black 100%);
+}
+
+/* Ensure both content layers share the same layout and animation */
+.marquee-focal-layer .marquee-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    /* Higher opacity for focus layer */
 }
 
 .marquee-wrapper.decoration.aurora {
