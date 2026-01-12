@@ -48,7 +48,10 @@ const translations = {
         tag_minimal: "Minimal",
         cursor_more: "More",
         marquee_text_1: "Aurora Collection",
-        marquee_text_2: "Minimal Series"
+        marquee_text_2: "Minimal Series",
+        gallery_badge: "Gallery",
+        gallery_title_1: "Visual",
+        gallery_title_2: "Experience"
     },
     uk: {
         nav_features: "Особливості",
@@ -98,7 +101,10 @@ const translations = {
         tag_minimal: "Мінімалізм",
         cursor_more: "Більше",
         marquee_text_1: "Колекція Aurora",
-        marquee_text_2: "Серія Minimal"
+        marquee_text_2: "Серія Minimal",
+        gallery_badge: "Галерея",
+        gallery_title_1: "Візуальний",
+        gallery_title_2: "Досвід"
     }
 };
 
@@ -402,7 +408,7 @@ const fadeObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.feature-card, .showcase-image, .showcase-content, .stat-item').forEach(el => {
+document.querySelectorAll('.feature-card, .showcase-image, .showcase-content, .stat-item, .gallery-item').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'all 0.8s cubic-bezier(0.2, 0, 0.2, 1)';
@@ -430,5 +436,34 @@ function animateStat(el) {
 // Re-observe headings
 document.querySelectorAll('h2.section-title').forEach(h => headingObserver.observe(h));
 
-// Re-observe headings
-document.querySelectorAll('h2.section-title').forEach(h => headingObserver.observe(h));
+// Gallery Pagination Logic
+const galleryCarousel = document.querySelector('.gallery-carousel');
+const galleryTrack = document.querySelector('.gallery-track');
+const galleryItems = document.querySelectorAll('.gallery-item');
+const paginationContainer = document.querySelector('.gallery-pagination');
+
+if (galleryCarousel && paginationContainer) {
+    // Create dots
+    galleryItems.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = `pagination-dot${index === 0 ? ' active' : ''}`;
+        dot.addEventListener('click', () => {
+            const itemWidth = galleryItems[0].offsetWidth + 4; // Width + gap
+            galleryCarousel.scrollTo({
+                left: index * itemWidth,
+                behavior: 'smooth'
+            });
+        });
+        paginationContainer.appendChild(dot);
+    });
+
+    // Update dots on scroll
+    galleryCarousel.addEventListener('scroll', () => {
+        const itemWidth = galleryItems[0].offsetWidth + 4;
+        const index = Math.round(galleryCarousel.scrollLeft / itemWidth);
+
+        document.querySelectorAll('.pagination-dot').forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === index);
+        });
+    });
+}
