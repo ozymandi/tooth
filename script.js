@@ -467,41 +467,92 @@ if (galleryCarousel && paginationContainer) {
         });
     });
 
-    // Drag to scroll functionality (click-to-activate mode)
-    let isDragging = false;
+    // Swipe with momentum functionality
+    let isDown = false;
+    let velocity = 0;
     let lastX = 0;
+    let lastTime = 0;
+    let momentumID;
 
-    galleryCarousel.addEventListener('click', (e) => {
-        isDragging = !isDragging;
+    galleryCarousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        galleryCarousel.classList.add('dragging');
+        galleryCarousel.style.cursor = 'grabbing';
+        galleryCarousel.style.scrollSnapType = 'none';
 
-        if (isDragging) {
-            galleryCarousel.classList.add('dragging');
-            galleryCarousel.style.cursor = 'grabbing';
-            galleryCarousel.style.scrollSnapType = 'none';
-            lastX = e.pageX;
-        } else {
+        lastX = e.pageX;
+        lastTime = Date.now();
+        velocity = 0;
+
+        // Cancel any ongoing momentum
+        cancelMomentumTracking();
+    });
+
+    galleryCarousel.addEventListener('mouseleave', () => {
+        if (isDown) {
+            isDown = false;
             galleryCarousel.classList.remove('dragging');
             galleryCarousel.style.cursor = 'grab';
-            galleryCarousel.style.scrollSnapType = 'x mandatory';
+            beginMomentumTracking();
+        }
+    });
+
+    galleryCarousel.addEventListener('mouseup', () => {
+        if (isDown) {
+            isDown = false;
+            galleryCarousel.classList.remove('dragging');
+            galleryCarousel.style.cursor = 'grab';
+            beginMomentumTracking();
         }
     });
 
     galleryCarousel.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
+        if (!isDown) return;
+        e.preventDefault();
 
-        const deltaX = e.pageX - lastX;
-        galleryCarousel.scrollLeft -= deltaX * 1.5; // Scroll speed multiplier
-        lastX = e.pageX;
+        const currentX = e.pageX;
+        const currentTime = Date.now();
+        const deltaX = currentX - lastX;
+        const timeDelta = currentTime - lastTime;
+
+        // Update scroll position
+        galleryCarousel.scrollLeft -= deltaX;
+
+        // Calculate velocity for momentum
+        if (timeDelta > 0) {
+            velocity = deltaX / timeDelta;
+        }
+
+        lastX = currentX;
+        lastTime = currentTime;
     });
 
-    galleryCarousel.addEventListener('mouseleave', () => {
-        if (isDragging) {
-            isDragging = false;
-            galleryCarousel.classList.remove('dragging');
-            galleryCarousel.style.cursor = 'grab';
+    function beginMomentumTracking() {
+        cancelMomentumTracking();
+        momentumID = requestAnimationFrame(momentumLoop);
+    }
+
+    function cancelMomentumTracking() {
+        if (momentumID) {
+            cancelAnimationFrame(momentumID);
+        }
+    }
+
+    function momentumLoop() {
+        // Apply velocity to scroll
+        galleryCarousel.scrollLeft -= velocity * 15;
+
+        // Deceleration factor (friction)
+        velocity *= 0.92;
+
+        // Continue loop if velocity is significant
+        if (Math.abs(velocity) > 0.05) {
+            momentumID = requestAnimationFrame(momentumLoop);
+        } else {
+            // Re-enable snap when momentum stops
             galleryCarousel.style.scrollSnapType = 'x mandatory';
         }
-    });
+    }
 
     // Set initial cursor style
     galleryCarousel.style.cursor = 'grab';
