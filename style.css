@@ -440,6 +440,7 @@ h1 {
     padding: 100px 3rem;
     position: relative;
     margin: 3rem 0;
+    overflow: hidden;
 }
 
 .showcase-features {
@@ -484,6 +485,8 @@ h1 {
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .showcase-image {
@@ -494,6 +497,13 @@ h1 {
     position: relative;
     overflow: hidden;
     cursor: none;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    perspective: 1000px;
+    transition: box-shadow 0.3s ease;
+}
+
+.showcase-image:hover {
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
 }
 
 .showcase-image img {
@@ -501,7 +511,7 @@ h1 {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .showcase-image:hover img {
@@ -580,12 +590,32 @@ h1 {
     width: 100%;
     padding: 20px 0;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.02);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     white-space: nowrap;
     position: relative;
     margin: 3rem 0;
+}
+
+.marquee-wrapper.decoration {
+    position: absolute;
+    left: -5%;
+    width: 110%;
+    z-index: 0;
+    pointer-events: none;
+    margin: 0;
+    background: transparent;
+    border: none;
+    opacity: 0.2;
+    padding: 0;
+}
+
+.marquee-wrapper.decoration.aurora {
+    transform: rotate(-3deg);
+    top: 85%;
+}
+
+.marquee-wrapper.decoration.minimal {
+    transform: rotate(3deg);
+    top: 85%;
 }
 
 .marquee-content {
@@ -601,7 +631,7 @@ h1 {
     font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #fff;
+    color: #764ba2;
     letter-spacing: -1px;
 }
 
