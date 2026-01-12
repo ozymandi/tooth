@@ -466,4 +466,38 @@ if (galleryCarousel && paginationContainer) {
             dot.classList.toggle('active', idx === index);
         });
     });
+
+    // Drag to scroll functionality
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    galleryCarousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        galleryCarousel.style.cursor = 'grabbing';
+        galleryCarousel.style.userSelect = 'none';
+        startX = e.pageX - galleryCarousel.offsetLeft;
+        scrollLeft = galleryCarousel.scrollLeft;
+    });
+
+    galleryCarousel.addEventListener('mouseleave', () => {
+        isDown = false;
+        galleryCarousel.style.cursor = 'grab';
+    });
+
+    galleryCarousel.addEventListener('mouseup', () => {
+        isDown = false;
+        galleryCarousel.style.cursor = 'grab';
+    });
+
+    galleryCarousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - galleryCarousel.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        galleryCarousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // Set initial cursor style
+    galleryCarousel.style.cursor = 'grab';
 }
