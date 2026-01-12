@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRUSHĒ - Дизайнерські Зубні Щітки</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="grain"></div>
+
+    <nav>
+        <div class="logo">BRUSHĒ</div>
+        <ul class="nav-links">
+            <li><a href="#features" data-i18n="nav_features">Features</a></li>
+            <li><a href="#showcase" data-i18n="nav_products">Products</a></li>
+            <li><a href="#stats" data-i18n="nav_about">About</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <span class="lang-divider">/</span>
+                <button class="lang-btn" data-lang="uk">UA</button>
+            </div>
+            <button class="nav-cta">→</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-main">
+            <div class="hero-images"></div>
+            <div class="hero-content">
+                <h1>
+                    <span class="blend-diff" data-i18n="hero_title_1">Where</span> <span class="gradient-text"
+                        data-i18n="hero_title_2">design</span> <br class="mobile-only"><span class="blend-diff"
+                        data-i18n="hero_title_3">meets</span><br>
+                    <span class="blend-diff" data-i18n="hero_title_4">health</span>
+                </h1>
+                <p class="subtitle" data-i18n="hero_subtitle">A revolution in daily dental care</p>
+            </div>
+        </div>
+        <button class="cta-button">→</button>
+    </section>
+
+    <section class="features" id="features">
+        <div style="text-align: center;">
+            <span class="section-badge" data-i18n="features_badge">Features</span>
+            <h2 class="section-title"><span data-i18n="features_title_1">Why</span> <span class="gradient-text"
+                    data-i18n="features_title_2">exactly</span> <span data-i18n="features_title_3">us?</span></h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="30" height="30" viewBox="0 0 24 24" stroke-width="2" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" color="currentColor">
+                        <path d="M12 3L13.045 7.455L17.5 8.5L13.045 9.545L12 14L10.955 9.545L6.5 8.5L10.955 7.455L12 3Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </path>
+                        <path
+                            d="M19 14L19.5225 16.2225L21.745 16.745L19.5225 17.2675L19 19.49L18.4775 17.2675L16.255 16.745L18.4775 16.2225L19 14Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </path>
+                        <path
+                            d="M6 15L6.3483 16.4834L7.8317 16.8317L6.3483 17.1801L6 18.6634L5.6517 17.1801L4.1683 16.8317L5.6517 16.4834L6 15Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </path>
+                    </svg>
+                </div>
+                <h3 data-i18n="feature_1_title">Premium Design</h3>
+                <p data-i18n="feature_1_desc">Each brush is crafted by leading designers with attention to every detail.
+                    Art in every line.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="30" height="30" viewBox="0 0 24 24" stroke-width="2" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" color="currentColor">
+                        <path d="M12 21C12 21 12 10 12 6C12 2 15 2 15 2" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M12 21C12 21 12 15 12 11C12 7 9 7 9 7" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M12 21C7.5 21 4 17.5 4 13C4 8.5 7.5 5 12 5C16.5 5 20 8.5 20 13C20 17.5 16.5 21 12 21Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        </path>
+                    </svg>
+                </div>
+                <h3 data-i18n="feature_2_title">Eco-Materials</h3>
+                <p data-i18n="feature_2_desc">We use only biodegradable and planet-safe materials. Caring for nature.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="30" height="30" viewBox="0 0 24 24" stroke-width="2" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" color="currentColor">
+                        <path d="M13 2L4.5 13H11V22L19.5 11H13V2Z" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <h3 data-i18n="feature_3_title">Innovative Tech</h3>
+                <p data-i18n="feature_3_desc">Ultra-thin bristles with silver nano-particles for perfect hygiene and
+                    whitening.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+        <div class="showcase-grid">
+            <div class="showcase-content">
+                <span class="section-badge" data-i18n="showcase_aurora_badge">Collection</span>
+                <h2 class="section-title"><span data-i18n="showcase_aurora_title_1">Aurora</span> <span
+                        class="gradient-text" data-i18n="showcase_aurora_title_2">Collection</span></h2>
+                <div class="showcase-features">
+                    <div class="feature-item">
+                        <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p data-i18n="showcase_aurora_desc_1">Inspired by the northern lights, this collection combines
+                            fluid lines and pearlescent shades.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p data-i18n="showcase_aurora_desc_2">Ergonomic handle with soft-touch coating and
+                            medium-stiffness bristles ensure perfect cleaning without damaging enamel.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p data-i18n="showcase_aurora_colors">Available in three colors: Moon Silver, Polar Lavender,
+                            and Ice Mint.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="showcase-image">
+                <div class="tags-container" data-tags-group="aurora">
+                    <div class="image-tag" data-i18n="tag_premium">Premium</div>
+                    <div class="image-tag" data-i18n="tag_ergonomic">Ergonomic</div>
+                </div>
+                <img src="C:/Users/oleha/.gemini/antigravity/brain/0a8c524d-8ac5-413f-a62e-6ed985b8e505/uploaded_image_1768171005593.png"
+                    alt="Premium Toothbrushes"
+                    style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            <span data-i18n="marquee_text_1">Aurora Collection</span>
+            <svg class="marquee-star" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3L13.045 7.455L17.5 8.5L13.045 9.545L12 14L10.955 9.545L6.5 8.5L10.955 7.455L12 3Z"
+                    fill="currentColor" />
+            </svg>
+            <span data-i18n="marquee_text_1">Aurora Collection</span>
+            <svg class="marquee-star" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3L13.045 7.455L17.5 8.5L13.045 9.545L12 14L10.955 9.545L6.5 8.5L10.955 7.455L12 3Z"
+                    fill="currentColor" />
+            </svg>
+            <span data-i18n="marquee_text_1">Aurora Collection</span>
+            <svg class="marquee-star" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3L13.045 7.455L17.5 8.5L13.045 9.545L12 14L10.955 9.545L6.5 8.5L10.955 7.455L12 3Z"
+                    fill="currentColor" />
+            </svg>
+            <!-- Duplicated for seamless loop -->
+            <span data-i18n="marquee_text_1">Aurora Collection</span>
+            <svg class="marquee-star" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3L13.045 7.455L17.5 8.5L13.045 9.545L12 14L10.955 9.545L6.5 8.5L10.955 7.455L12 3Z"
+                    fill="currentColor" />
+            </svg>
+            <span data-i18n="marquee_text_1">Aurora Collection</span>
+            <svg class="marquee-star" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M12 3L13.045 7.455L17.5 8.5L13.045 9.545L12 14L10.955 9.545L12 14L10.955 9.545L6.5 8.5L10.955 7.455L12 3Z"
+                    fill="currentColor" />
+            </svg>
+            <span data-i18n="marquee_text_1">Aurora Collection</span>
+            <svg class="marquee-star" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3L13.045 7.455L17.5 8.5L13.045 9.545L12 14L10.955 9.545L6.5 8.5L10.955 7.455L12 3Z"
+                    fill="currentColor" />
+            </svg>
+        </div>
+    </div>
+
+    <section class="showcase">
+        <div class="showcase-grid">
+            <div class="showcase-image">
+                <div class="tags-container" data-tags-group="minimal">
+                    <div class="image-tag" data-i18n="tag_eco">Eco</div>
+                    <div class="image-tag" data-i18n="tag_minimal">Minimal</div>
+                </div>
+                <img src="C:/Users/oleha/.gemini/antigravity/brain/0a8c524d-8ac5-413f-a62e-6ed985b8e505/uploaded_image_1768173627208.png"
+                    alt="Minimal Series" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+            </div>
+            <div class="showcase-content">
+                <span class="section-badge" data-i18n="showcase_minimal_badge">Collection</span>
+                <h2 class="section-title"><span data-i18n="showcase_minimal_title_1">Minimal</span> <span
+                        class="gradient-text" data-i18n="showcase_minimal_title_2">Series</span></h2>
+                <div class="showcase-features">
+                    <div class="feature-item">
+                        <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p data-i18n="showcase_minimal_desc_1">For those who value pure forms and functionality.
+                            Japanese minimalism in dentistry.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p data-i18n="showcase_minimal_desc_2">Monochrome palette and geometric precision. Every detail
+                            thought out to perfection.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg class="check-icon" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p data-i18n="showcase_minimal_desc_3">Bamboo handle and activated charcoal bristles for natural
+                            whitening.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats" id="stats">
+        <div class="stats-bg-image">🪥</div>
+        <div style="text-align: center; margin-bottom: 80px;">
+            <span class="section-badge" data-i18n="stats_badge">Stats</span>
+            <h2 class="section-title" style="margin-bottom: 0;"><span data-i18n="stats_title_1">Our</span> <span
+                    class="gradient-text" data-i18n="stats_title_2">Achievements</span></h2>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3 data-target="50000" data-suffix="K+">0</h3>
+                <p data-i18n="stat_1_desc">Happy Clients</p>
+            </div>
+            <div class="stat-item">
+                <h3 data-target="98" data-suffix="%">0</h3>
+                <p data-i18n="stat_2_desc">Recommend to Friends</p>
+            </div>
+            <div class="stat-item">
+                <h3 data-target="15" data-suffix="+">0</h3>
+                <p data-i18n="stat_3_desc">Design Awards</p>
+            </div>
+            <div class="stat-item">
+                <h3 data-target="100" data-suffix="%">0</h3>
+                <p data-i18n="stat_4_desc">Eco-Materials</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p data-i18n="footer_copy">© 2024 BRUSHĒ. All rights reserved. Created with love for design and health.</p>
+    </footer>
+
+    <div class="custom-cursor">
+        <span data-i18n="cursor_more">More</span>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
