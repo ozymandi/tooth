@@ -270,6 +270,11 @@ nav.hidden {
     /* Chrome/Safari */
 }
 
+.gallery-carousel.dragging {
+    scroll-snap-type: none;
+    cursor: grabbing !important;
+}
+
 .gallery-track {
     display: flex;
     gap: 4px;

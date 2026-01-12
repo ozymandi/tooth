@@ -467,35 +467,40 @@ if (galleryCarousel && paginationContainer) {
         });
     });
 
-    // Drag to scroll functionality
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    // Drag to scroll functionality (click-to-activate mode)
+    let isDragging = false;
+    let lastX = 0;
 
-    galleryCarousel.addEventListener('mousedown', (e) => {
-        isDown = true;
-        galleryCarousel.style.cursor = 'grabbing';
-        galleryCarousel.style.userSelect = 'none';
-        startX = e.pageX - galleryCarousel.offsetLeft;
-        scrollLeft = galleryCarousel.scrollLeft;
-    });
+    galleryCarousel.addEventListener('click', (e) => {
+        isDragging = !isDragging;
 
-    galleryCarousel.addEventListener('mouseleave', () => {
-        isDown = false;
-        galleryCarousel.style.cursor = 'grab';
-    });
-
-    galleryCarousel.addEventListener('mouseup', () => {
-        isDown = false;
-        galleryCarousel.style.cursor = 'grab';
+        if (isDragging) {
+            galleryCarousel.classList.add('dragging');
+            galleryCarousel.style.cursor = 'grabbing';
+            galleryCarousel.style.scrollSnapType = 'none';
+            lastX = e.pageX;
+        } else {
+            galleryCarousel.classList.remove('dragging');
+            galleryCarousel.style.cursor = 'grab';
+            galleryCarousel.style.scrollSnapType = 'x mandatory';
+        }
     });
 
     galleryCarousel.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - galleryCarousel.offsetLeft;
-        const walk = (x - startX) * 2; // Scroll speed multiplier
-        galleryCarousel.scrollLeft = scrollLeft - walk;
+        if (!isDragging) return;
+
+        const deltaX = e.pageX - lastX;
+        galleryCarousel.scrollLeft -= deltaX * 1.5; // Scroll speed multiplier
+        lastX = e.pageX;
+    });
+
+    galleryCarousel.addEventListener('mouseleave', () => {
+        if (isDragging) {
+            isDragging = false;
+            galleryCarousel.classList.remove('dragging');
+            galleryCarousel.style.cursor = 'grab';
+            galleryCarousel.style.scrollSnapType = 'x mandatory';
+        }
     });
 
     // Set initial cursor style
