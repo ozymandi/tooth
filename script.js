@@ -96,7 +96,7 @@ const translations = {
         tag_eco: "Еко",
         tag_minimal: "Мінімалізм",
         cursor_more: "Більше",
-        marquee_text_1: "Aurora Collection"
+        marquee_text_1: "Колекція Aurora"
     }
 };
 
