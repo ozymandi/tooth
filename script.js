@@ -8,7 +8,7 @@ const translations = {
         hero_title_1: "Where",
         hero_title_2: "design",
         hero_title_3: "meets",
-        hero_title_4: "health",
+        hero_title_4: "health today",
         hero_subtitle: "A revolution in daily dental care",
         features_badge: "Features",
         features_title_1: "Why",
@@ -61,7 +61,7 @@ const translations = {
         hero_title_1: "Де",
         hero_title_2: "дизайн",
         hero_title_3: "зустрічає",
-        hero_title_4: "здоров'я",
+        hero_title_4: "здоров'я сьогодні",
         hero_subtitle: "Революція в щоденному догляді за зубами",
         features_badge: "Переваги",
         features_title_1: "Чому",
@@ -278,8 +278,9 @@ window.addEventListener('scroll', () => {
     // Parallax logic for hero
     const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
-        heroContent.style.transform = `translateY(${currentScrollY * 0.5}px)`;
-        heroContent.style.opacity = 1 - currentScrollY / 600;
+        // Using marginTop instead of transform to avoid creating a stacking context
+        // which breaks mix-blend-mode: difference in children
+        heroContent.style.marginTop = `${currentScrollY * 0.5}px`;
     }
 
     // Parallax for stats background
@@ -381,6 +382,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     content.style.transform = `scale(1.1) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                 }
             });
+        });
+    }
+
+    // Custom Brush Cursor for Gallery
+    const gallerySection = document.querySelector('.gallery');
+    if (gallerySection && customCursor) {
+        gallerySection.addEventListener('mouseenter', () => {
+            customCursor.classList.add('brush-active');
+        });
+        gallerySection.addEventListener('mouseleave', () => {
+            customCursor.classList.remove('brush-active');
         });
     }
 });

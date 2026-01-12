@@ -158,8 +158,6 @@ nav.hidden {
     justify-content: flex-end;
     align-items: flex-start;
     padding: 3rem;
-    isolation: isolate;
-    z-index: 1;
 }
 
 .blend-diff {
@@ -636,6 +634,40 @@ h1 {
     transform: translate(-50%, -50%) scale(1);
 }
 
+.custom-cursor.brush-active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    width: 64px;
+    height: 64px;
+    background: url('assets/images/Brush.png') no-repeat center center;
+    background-size: contain;
+    border-radius: 0;
+    mix-blend-mode: normal;
+    animation: cursor-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cursor-pulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+.custom-cursor.brush-active span {
+    display: none;
+}
+
+.gallery:hover,
+.gallery:hover .gallery-carousel,
+.gallery:hover .gallery-item {
+    cursor: none !important;
+}
+
 .showcase-image::before {
     content: '';
     position: absolute;
@@ -782,11 +814,30 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 800px;
-    opacity: 0.03;
+    width: 400px;
+    height: auto;
+    opacity: 1;
     z-index: 0;
     pointer-events: none;
-    filter: blur(2px);
+}
+
+.stats-bg-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    animation: float-breathe 6s ease-in-out infinite;
+}
+
+@keyframes float-breathe {
+
+    0%,
+    100% {
+        transform: translateY(-20px) scale(0.9);
+    }
+
+    50% {
+        transform: translateY(20px) scale(1);
+    }
 }
 
 .stats-grid {
